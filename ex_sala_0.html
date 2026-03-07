@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Novo Jupiterweb</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        header {
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 4px solid #FFC72C;
+        }
+        header img {
+            margin-right: 30 px;
+        }
+        .container-principal {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+        .coluna-menu {
+            width: 200px;
+        }
+        .coluna-conteudo {
+            flex-grow: 1;
+            min-width: 300px;
+            display: flex;
+            justify-content: center;
+        }
+        form {
+            text-align: center;
+            background-color: #f9f9f9;
+            padding: 40px;
+            border-radius: 8px;
+            border: 1px solid #e0e0e0;
+        }
+        body {
+
+            font-family: Arial, sans-serif;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #cccccccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+        button {
+            background-color: #FFC72C;
+            color: #13294B;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        h4 {
+            background-color: #13294B;
+            color: white;
+            padding: 10px;
+            margin: 0; 
+            border-radius: 5px 5px 0 0;
+        }
+        li {
+            padding: 10px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        a {
+            text-decoration: none;
+            color: #333333;
+        }
+        li:hover {
+            background-color: #f0f0f0;
+        }
+        li:hover a {
+            color: #FFC72C;
+            font-weight: bold;
+        }
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            font-size: 12px;
+            color: #666666;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="https://uspdigital.usp.br/comumwebdev/imagens/cabecalho/usp-logo.png" alt="Logo USP">
+        <img src="https://uspdigital.usp.br/comumwebdev/imagens/cabecalho/usp-logo-texto.png" alt="Universidade de São Paulo">
+    </header>
+    
+    <div class="container-principal">
+        
+        <div class="coluna-menu">
+            <div class="bloco-menu">
+                <h4>Público</h4>
+                <ul>
+                    <li><a href="#">Calendário Escolar</a></li>
+                    <li><a href="#">Cursos de ingresso</a></li>
+                    <li><a href="#">Disciplina</a></li>
+                    <li><a href="#">Editais</a></li>
+                    <li><a href="#">FAQ</a></li>
+                </ul>
+            </div>
+            <div class="bloco-menu">
+                <h4>Acesso Restrito</h4>
+                <ul>
+                    <li><a href="#">Entrar</a></li>
+                    <li><a href="#">Esqueci a Senha</a></li>
+                    <li><a href="#">Primeiro Acesso</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="coluna-conteudo">
+            <form>
+                Usuário: <input type="text" placeholder="Número USP">
+                <br><br>
+                Senha:   <input type="password" placeholder="Senha">
+                <br><br>
+                <button>Entrar</button>
+            </form>
+        </div>
+
+    </div>
+    </div>
+    <footer>
+        <p>Créditos | Fale conosco</p>
+        <p>&copy; 1999 - 2026 - Superintendência de Tecnologia da Informação/USP</p>
+    </footer>
+
+</body>
+</html>
+</body>
+</html>
