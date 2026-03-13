@@ -18,7 +18,7 @@ Este projeto foi construído seguindo as especificações da disciplina:
 * **Back-end:** Construído utilizando o framework **FastAPI**.
 * **Banco de Dados (SQL):** Modelagem com relacionamentos para estruturar os dados do sistema.
   * **Modelos Principais:** `Membro`, `Ata` e `Feedback`.
-  * **Relacionamentos:** [Exemplo: Relação *One to Many* entre `Membro` e `Ata`, onde um membro é o autor responsável por publicar uma ata].
+  * **Relacionamentos:** Relação *One to Many* entre `Membro` e `Ata`, onde um membro é o autor responsável por publicar uma ata.
 * **HTMX (Operações CRUD):**
   * `hx-post`: Utilizado para o envio de novos formulários de feedback e criação de novas atas.
   * `hx-get`: Utilizado para buscar a lista de atas cadastradas e exibi-las na tela.
