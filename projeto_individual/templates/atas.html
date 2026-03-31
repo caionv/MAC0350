@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section class="card">
+    <h2>Mural de Atas (Blog)</h2>
+    <p>Confira os registros das últimas reuniões da representação discente.</p>
+
+    <!-- Barra de busca -->
+    <div class="search-bar">
+        <input type="text" 
+               name="q" 
+               placeholder="Buscar ata por título ou data..." 
+               hx-get="/atas/search" 
+               hx-trigger="keyup changed delay:500ms, search" 
+               hx-target="#atas-list">
+    </div>
+</section>
+
+<section class="card highlight">
+    <h3>Publicar Nova Ata (Administradores)</h3>
+    <form hx-post="/atas" hx-target="#atas-list" hx-swap="afterbegin" onsubmit="this.reset();">
+        <div class="form-group">
+            <label for="title">Título da Reunião:</label>
+            <input type="text" id="title" name="title" required>
+        </div>
+        <div class="form-group">
+            <label for="date">Data:</label>
+            <input type="date" id="date" name="date" required>
+        </div>
+        <div class="form-group">
+            <label for="author_id">Membro da Chapa responsável pela Ata:</label>
+            <select id="author_id" name="author_id" required>
+                {% for model_member in members %}
+                    <option value="{{ model_member.id }}">{{ model_member.name }} ({{ model_member.role }})</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="content">Decisões e Pautas discutidas:</label>
+            <textarea id="content" name="content" rows="4" required></textarea>
+        </div>
+        <button type="submit">Publicar Ata</button>
+    </form>
+</section>
+
+<h3>Últimas Atas</h3>
+<div id="atas-list">
+    {% include "components/ata_list.html" %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+<form class="ata-item highlight" id="ata-{{ ata.id }}" hx-put="/atas/{{ ata.id }}" hx-target="#ata-{{ ata.id }}" hx-swap="outerHTML">
+    <h4 style="margin-top: 0; color: var(--accent-orange);">Editando Reunião</h4>
+    
+    <div class="form-group">
+        <label>Título:</label>
+        <input type="text" name="title" value="{{ ata.title }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label>Data:</label>
+        <input type="date" name="date" value="{{ ata.date }}" required>
+    </div>
+    
+    <div class="form-group">
+        <label>Membro Responsável:</label>
+        <select name="author_id" required>
+            {% for model_member in members %}
+                <option value="{{ model_member.id }}" {% if model_member.id == ata.author_id %}selected{% endif %}>
+                    {{ model_member.name }} ({{ model_member.role }})
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label>Conteúdo (Decisões e Pautas):</label>
+        <textarea name="content" rows="6" required>{{ ata.content }}</textarea>
+    </div>
+    
+    <div class="ata-actions">
+        <button type="submit" class="btn">Salvar Alterações</button>
+        <!-- Simples reload para abertar a edição -->
+        <button type="button" class="btn btn-danger" onclick="window.location.reload()">Cancelar</button>
+    </div>
+</form>
