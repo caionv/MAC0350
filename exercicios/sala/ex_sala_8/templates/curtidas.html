@@ -1,0 +1,12 @@
+<script>
+    document.querySelectorAll('.aba').forEach(btn => btn.classList.remove('ativa'));
+    document.getElementById('btn-curtidas').classList.add('ativa');
+</script>
+
+<h2>Aba de Curtidas</h2>
+<p>
+    Curtidas: <span id="contador">{{ curtidas }}</span>
+</p>
+
+<button hx-post="/curtir" hx-target="#contador">Curtir!</button>
+<button hx-delete="/curtir" hx-target="#contador" hx-confirm="Tem certeza que deseja apagar as curtidas?">Zerar</button>

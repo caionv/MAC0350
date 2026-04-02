@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <title>Exercícios Aula 8</title>
+    <script src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.8/dist/htmx.js"></script>
+    <style>
+        .ativa { 
+            background-color: lightgray; 
+            font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Meu Site</h1>
+    </header>
+    <nav>
+        <button id="btn-curtidas" class="aba" hx-get="/aba/curtidas" hx-target="main">Curtidas</button>
+        <button id="btn-jupiter" class="aba" hx-get="/aba/jupiter" hx-target="main">Júpiter</button>
+        <button id="btn-professor" class="aba" hx-get="/aba/professor" hx-target="main">Professor</button>
+    </nav>
+    <hr>
+    
+    <main hx-get="/aba/curtidas" hx-trigger="load">
+    </main>
+
+    <div hx-get="/proxima-aba" 
+         hx-target="main" 
+         hx-trigger="keyup[shiftKey&&altKey&&(key=='p'||key=='P')] from:body">
+    </div>
+</body>
+</html>
