@@ -7,8 +7,10 @@
     </div>
     <div style="margin-bottom: 1rem; line-height: 1.5; white-space: pre-wrap;">{{ ata.content }}</div>
     
+    {% if user %}
     <div class="ata-actions">
         <button class="btn btn-edit" hx-get="/atas/{{ ata.id }}/edit" hx-target="#ata-{{ ata.id }}" hx-swap="outerHTML">Editar</button>
         <button class="btn btn-danger" hx-delete="/atas/{{ ata.id }}" hx-target="#ata-{{ ata.id }}" hx-swap="outerHTML" hx-confirm="Tem certeza que deseja apagar esta ata?">Apagar</button>
     </div>
+    {% endif %}
 </div>

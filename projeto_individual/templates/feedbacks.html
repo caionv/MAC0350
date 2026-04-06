@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="card">
+    <h2>Caixa de Feedbacks</h2>
+    <p>Abaixo estão as dúvidas, sugestões e pedidos privados enviados pelos alunos via página inicial.</p>
+    
+    {% for fb in feedbacks %}
+    <div class="ata-item" style="border-left-color: var(--accent-orange);">
+        <div>
+            <h4 style="margin-top: 0; color: var(--accent-orange);">De: {{ fb.student_name }}</h4>
+            <div class="ata-meta">Enviado em {{ fb.created_at }}</div>
+        </div>
+        <div style="margin-bottom: 0; line-height: 1.5; white-space: pre-wrap;">{{ fb.message }}</div>
+    </div>
+    {% else %}
+    <p>Nenhum feedback recebido até o momento.</p>
+    {% endfor %}
+</section>
+{% endblock %}

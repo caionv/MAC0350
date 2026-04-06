@@ -14,9 +14,10 @@
     </div>
 </section>
 
+{% if user %}
 <section class="card highlight">
-    <h3>Publicar Nova Ata (Administradores)</h3>
-    <form hx-post="/atas" hx-target="#atas-list" hx-swap="afterbegin" onsubmit="this.reset();">
+    <h3>Publicar Nova Ata</h3>
+    <form hx-post="/atas" hx-target="#atas-list" hx-swap="afterbegin" hx-on::after-request="if(event.detail.successful) this.reset()">
         <div class="form-group">
             <label for="title">Título da Reunião:</label>
             <input type="text" id="title" name="title" required>
@@ -40,6 +41,7 @@
         <button type="submit">Publicar Ata</button>
     </form>
 </section>
+{% endif %}
 
 <h3>Últimas Atas</h3>
 <div id="atas-list">

@@ -1,6 +1,9 @@
 from sqlmodel import Field, SQLModel, create_engine, Session, Relationship
 from typing import List, Optional
 from datetime import datetime
+from passlib.context import CryptContext
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 class Member(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
@@ -8,6 +11,7 @@ class Member(SQLModel, table=True):
     role: str
     email: str
     tg: str
+    password: str
     
     atas: List["Ata"] = Relationship(back_populates="author")
 
@@ -39,10 +43,13 @@ def initialize_members():
         from sqlmodel import select
         has_member = session.exec(select(Member)).first()
         if not has_member:
+            hashed_pwd = pwd_context.hash("senha")
             members = [
-                Member(name="Alice Ferreira", role="Presidenta", email="alice.bcc@ime.usp.br", tg="@alicebcc"),
-                Member(name="Beto Carvalho", role="Vice-Presidente", email="beto.bcc@ime.usp.br", tg="@betobcc"),
-                Member(name="Cecília Santos", role="Diretora de Comunicação", email="cecilia.bcc@ime.usp.br", tg="@ceciliabcc")
+                Member(name="Nicolas Caldas Borsari", role="RD MAC, RD CoC-BCC, RD CCEx", email="nicborsari@usp.br", tg="@ncbor", password=hashed_pwd),
+                Member(name="Kaiky Henrique Ribeiro Cintra", role="RD Suplente MAC", email="kaikycintra@usp.br", tg="@kai_kiwi77", password=hashed_pwd),
+                Member(name="Gustavo Costa Arakaki", role="RD CCSL", email="gustavo.arakaki@usp.br", tg="@Ar4kaki", password=hashed_pwd),
+                Member(name="Thalia Angelo Gomes da Silva", role="RD Suplente CCEx", email="thaliasilva@usp.br", tg="@thaliadsilva", password=hashed_pwd),
+                Member(name="Sophia Helena Gutruf", role="RD Suplente CoC-BCC", email="sophiagutruf@usp.br", tg="@sophgut", password=hashed_pwd)
             ]
             session.add_all(members)
             session.commit()

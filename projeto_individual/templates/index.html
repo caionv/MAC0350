@@ -73,6 +73,7 @@
             <h3>{{ member.name }}</h3>
             <p><strong>{{ member.role }}</strong></p>
             <p><a href="mailto:{{ member.email }}">{{ member.email }}</a></p>
+            <p>Telegram: <strong>{{ member.tg }}</strong></p>
         </div>
         {% endfor %}
     </div>
@@ -85,8 +86,8 @@
     <div id="feedback-form-container">
         <form hx-post="/feedback" hx-target="#feedback-form-container" hx-swap="outerHTML">
             <div class="form-group">
-                <label for="student_name">Seu Nome (Opcional):</label>
-                <input type="text" id="student_name" name="student_name" placeholder="Deixe em branco para ser anônimo">
+                <label for="student_name">Seu E-mail (Opcional):</label>
+                <input type="email" id="student_name" name="student_name" placeholder="Deixe em branco para ser anônimo">
             </div>
             
             <div class="form-group">

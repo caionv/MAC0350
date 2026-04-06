@@ -3,3 +3,6 @@ uvicorn
 sqlmodel
 jinja2
 python-multipart
+PyJWT
+passlib
+bcrypt==3.2.2

@@ -15,6 +15,12 @@
         <nav>
             <a href="/">Home</a>
             <a href="/atas">Mural de Atas</a>
+            {% if user %}
+            <a href="/feedbacks">Ver Feedbacks</a>
+            <a href="#" hx-post="/logout">Sair</a>
+            {% else %}
+            <a href="/login">Login Admin</a>
+            {% endif %}
         </nav>
     </header>
 
