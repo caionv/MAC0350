@@ -11,7 +11,7 @@ from database import (
     initialize_members,
     get_session,
     Member,
-    MeetingMinute,
+    Ata,
     Feedback
 )
 
@@ -53,7 +53,7 @@ def create_feedback(
 
 @app.get("/atas", response_class=HTMLResponse)
 def read_atas(request: Request, session: Session = Depends(get_session)):
-    atas = session.exec(select(MeetingMinute).order_by(MeetingMinute.id.desc())).all()
+    atas = session.exec(select(Ata).order_by(Ata.id.desc())).all()
     members = session.exec(select(Member)).all()
     return templates.TemplateResponse(request=request, name="atas.html", context={
         "request": request, 
@@ -70,7 +70,7 @@ def create_ata(
     author_id: int = Form(...),
     session: Session = Depends(get_session)
 ):
-    ata = MeetingMinute(title=title, date=date, content=content, author_id=author_id)
+    ata = Ata(title=title, date=date, content=content, author_id=author_id)
     session.add(ata)
     session.commit()
     session.refresh(ata)
@@ -86,10 +86,10 @@ def search_atas(
     q: str = "",
     session: Session = Depends(get_session)
 ):
-    query = select(MeetingMinute)
+    query = select(Ata)
     if q:
-        query = query.where((MeetingMinute.title.contains(q)) | (MeetingMinute.date.contains(q)))
-    atas = session.exec(query.order_by(MeetingMinute.id.desc())).all()
+        query = query.where((Ata.title.contains(q)) | (Ata.date.contains(q)))
+    atas = session.exec(query.order_by(Ata.id.desc())).all()
     
     return templates.TemplateResponse(request=request, name="components/ata_list.html", context={
         "request": request,
@@ -98,7 +98,7 @@ def search_atas(
 
 @app.get("/atas/{id}/edit", response_class=HTMLResponse)
 def get_edit_ata(request: Request, id: int, session: Session = Depends(get_session)):
-    ata = session.get(MeetingMinute, id)
+    ata = session.get(Ata, id)
     members = session.exec(select(Member)).all()
     return templates.TemplateResponse(request=request, name="components/ata_edit.html", context={
         "request": request,
@@ -116,7 +116,7 @@ def update_ata(
     author_id: int = Form(...),
     session: Session = Depends(get_session)
 ):
-    ata = session.get(MeetingMinute, id)
+    ata = session.get(Ata, id)
     if not ata:
         return HTMLResponse("Ata não encontrada", status_code=404)
         
@@ -134,7 +134,7 @@ def update_ata(
 
 @app.delete("/atas/{id}", response_class=HTMLResponse)
 def delete_ata(id: int, session: Session = Depends(get_session)):
-    ata = session.get(MeetingMinute, id)
+    ata = session.get(Ata, id)
     if ata:
         session.delete(ata)
         session.commit()

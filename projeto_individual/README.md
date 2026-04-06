@@ -29,3 +29,16 @@ Este projeto foi construído seguindo as especificações da disciplina:
   **Autor:** Caio Nicoluzzi Vieira
   
   **NUSP:**  14562960
+
+## Como executar
+
+Instale as dependências:
+```bash
+make install
+```
+
+Inicie o servidor:
+```bash
+make run
+```
+Acesse `http://127.0.0.1:8000`.

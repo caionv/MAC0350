@@ -7,10 +7,11 @@ class Member(SQLModel, table=True):
     name: str
     role: str
     email: str
+    tg: str
     
-    atas: List["MeetingMinute"] = Relationship(back_populates="author")
+    atas: List["Ata"] = Relationship(back_populates="author")
 
-class MeetingMinute(SQLModel, table=True):
+class Ata(SQLModel, table=True):
     id: Optional[int] = Field(default=None, primary_key=True)
     title: str
     content: str
@@ -35,15 +36,13 @@ def create_db_and_tables():
     
 def initialize_members():
     with Session(engine) as session:
-        # Pega o primeiro para checar se a tabela está vazia
-        # Nota: sqlmodel recomenda usar `session.exec(select(Member)).first()` mas esse jeito mais simples também funciona.
         from sqlmodel import select
         has_member = session.exec(select(Member)).first()
         if not has_member:
             members = [
-                Member(name="Alice Ferreira", role="Presidenta", email="alice.bcc@ime.usp.br"),
-                Member(name="Beto Carvalho", role="Vice-Presidente", email="beto.bcc@ime.usp.br"),
-                Member(name="Cecília Santos", role="Diretora de Comunicação", email="cecilia.bcc@ime.usp.br")
+                Member(name="Alice Ferreira", role="Presidenta", email="alice.bcc@ime.usp.br", tg="@alicebcc"),
+                Member(name="Beto Carvalho", role="Vice-Presidente", email="beto.bcc@ime.usp.br", tg="@betobcc"),
+                Member(name="Cecília Santos", role="Diretora de Comunicação", email="cecilia.bcc@ime.usp.br", tg="@ceciliabcc")
             ]
             session.add_all(members)
             session.commit()
